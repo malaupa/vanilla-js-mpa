@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pegelstände</title>
+  <link rel="stylesheet" href="../css/custom.css">
+  <link rel="shortcut icon" href="../favicon.ico">
+</head>
+
+<body>
+  <header class="container-fluid">
+    <hgroup class="container">
+      <h1>Pegelstände</h1>
+      <h2>Pegel anzeigen und filtern.</h2>
+    </hgroup>
+  </header>
+  <main class="container">
+    <nav class="container top">
+      <ul>
+      </ul>
+      <ul>
+        <li><router-link><button role="button" data-router-link="#Elbe">Elbe</button></router-link></li>
+        <li><router-link><button role="button" data-router-link="#Rhein">Rhein</button></router-link></li>
+      </ul>
+      <ul>
+        <li><global-filter data-store="RouterStore">
+            <input type="search" name="search" placeholder="Suche">
+            <a href="#" aria-label="Reset" class="reset" data-reset></a>
+          </global-filter></li>
+        <li><page-amount data-store="RouterStore">
+            <select>
+              <option>15</option>
+              <option>25</option>
+              <option>50</option>
+              <option>100</option>
+            </select>
+          </page-amount></li>
+      </ul>
+    </nav>
+    <router-outlet data-router-views="#Elbe,#Rhein">
+      <template>
+        <water-selector>
+          <template>
+            <data-table data-source="inject#InjectDynamic.getStations" data-store="OutletRouterStore">
+              <template>
+                <div class="table-scroll">
+                  <table role="grid">
+                    <thead>
+                      <tr>
+                        <th data-col="name" data-sort="true">Name</th>
+                        <th data-col="timestamp" data-sort="true" data-formatter="dateTime">Gemeldet</th>
+                        <th data-col="currentLevel" data-sort="true">Aktueller Pegel</th>
+                        <th data-col="highestLevel" data-sort="true">Höchster Pegel</th>
+                        <th data-col="lowestLevel" data-sort="true">Niedrigster Pegel</th>
+                        <th data-col="details" class="action"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
+                <nav>
+                  <ul>
+                    <li>Ergebnisse: <span data-slice></span> von <span data-total-count></span></li>
+                  </ul>
+                  <ul>
+                    <li data-page-sibling><button role="button" class="secondary" data-prev>Voherige</button></li>
+                    </li>
+                    <li><button role="button" class="secondary" data-next>Nächste</button></li>
+                    <template data-page-tpl>
+                      <li><button role="button" class="secondary" data-page-select>1</button>
+                    </template>
+                    <template data-page-placeholder>
+                      <li><span role="placeholder">...</span></li>
+                    </template>
+                  </ul>
+                </nav>
+              </template>
+              <template data-col="details">
+                <station-details>
+                  <div><button role="button" class="info" aria-label="Details"></button></div>
+                </station-details>
+              </template>
+            </data-table>
+          </template>
+        </water-selector>
+      </template>
+    </router-outlet>
+  </main>
+  <footer class="container">
+    <hr />
+    <p class="container">© 2023 - Pegelstände</p>
+  </footer>
+  <dialog id="station-details">
+    <dialog-outlet>
+      <template>
+        <station-details-content>
+          <article>
+            <header><a href="#" aria-label="Close" class="close" data-close></a>
+              <h3></h3>
+            </header>
+            <json-tree>
+              <pre></pre>
+            </json-tree>
+            <footer>
+              <a href="#" role="button" class="secondary" data-close>Schließen</a>
+            </footer>
+          </article>
+        </station-details-content>
+      </template>
+    </dialog-outlet>
+  </dialog>
+  <script type="importmap">
+    {
+      "imports": {
+        "inject": "./js/util/inject.js"
+      }
+    }
+  </script>
+  <script type="module" src="./js/router.js"></script>
+  <script type="module" src="./js/components/amount.js"></script>
+  <script type="module" src="./js/components/globalfilter.js"></script>
+  <script type="module" src="./js/components/datatable.js"></script>
+  <script type="module" src="./js/components/dialog.js"></script>
+  <script type="module" src="./js/components/json.js"></script>
+  <script type="module" src="./waters.js"></script>
+  <script type="module" src="./details.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,335 @@
+@import "./pico.min.css";
+
+:root {
+  --font-size: 15px;
+  --primary: #42A5F5 !important;
+  --primary-hover: #3C89C8F7 !important;
+}
+
+@media (min-width: 576px) {
+  body > header,
+  body > main,
+  body > footer,
+  section {
+    --block-spacing-vertical: calc(var(--spacing) * 1.25);
+  }
+}
+
+@media (min-width: 768px) {
+  body > header,
+  body > main,
+  body > footer,
+  section {
+    --block-spacing-vertical: calc(var(--spacing) * 1.5);
+  }
+}
+
+@media (min-width: 992px) {
+  body > header,
+  body > main,
+  body > footer,
+  section {
+    --block-spacing-vertical: calc(var(--spacing) * 1.75);
+  }
+}
+
+@media (min-width: 1200px) {
+  body > header,
+  body > main,
+  body > footer,
+  section {
+    --block-spacing-vertical: calc(var(--spacing) * 2);
+  }
+}
+
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1330px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1530px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .container {
+    max-width: 1730px;
+  }
+}
+
+input[type="checkbox"] {
+  margin: 0;
+}
+
+body > header {
+  background-color: var(--primary);
+}
+
+body > header > hgroup {
+  margin-bottom: 0;
+}
+
+body > header > h1,
+body > header > hgroup > h1,
+body > header > hgroup > h2 {
+  color: white;
+}
+
+:is(button, input[type="submit"], input[type="button"], [role="button"]).outline:is(
+    [aria-current],
+    :hover,
+    :active,
+    :focus
+  ) {
+  --background-color: var(--primary);
+  --color: white;
+}
+
+:is(button, input[type="submit"], input[type="button"], [role="button"]).outline.secondary:is(
+    [aria-current],
+    :hover,
+    :active,
+    :focus
+  ) {
+  --background-color: var(--secondary);
+  --color: white;
+}
+
+[role="button"] {
+  user-select: none;
+}
+
+button.info {
+  background-position: center;
+  background-image: url("../icons/info.svg");
+  width: calc(var(--spacing) * 2);
+  height: calc(var(--spacing) * 2);
+  margin-bottom: 0;
+}
+
+select {
+  cursor: pointer;
+}
+
+nav.top {
+  padding-bottom: var(--block-spacing-vertical);
+}
+
+nav.top [role="button"] {
+  padding: var(--form-element-spacing-vertical) var(--form-element-spacing-horizontal);
+}
+
+nav span[role="placeholder"] {
+  padding: var(--nav-link-spacing-vertical) var(--nav-link-spacing-horizontal);
+}
+
+main > section:last-child {
+  margin: 0;
+}
+
+body > footer {
+  padding-top: 0;
+}
+
+nav *:is([role="button"]) {
+  --background-color: transparent;
+  --color: var(--primary);
+}
+
+nav *:is([role="button"]).selected {
+  --background-color: var(--primary);
+  --color: white;
+}
+
+table {
+  table-layout: fixed;
+}
+
+table tr {
+  height: 3.5rem;
+}
+
+table td,
+table th {
+  padding: calc(var(--spacing) / 3) var(--spacing);
+}
+
+table thead th {
+  user-select: none;
+  position: relative;
+  border-top: var(--border-width) solid var(--table-border-color);
+  font-weight: bolder;
+}
+
+table thead th[data-sort] {
+  cursor: pointer;
+}
+
+table thead th.sort-asc::after {
+  content: url("../icons/arrow-up.svg");
+  position: absolute;
+  right: 0;
+}
+
+table thead th.sort-desc::after {
+  content: url("../icons/arrow-down.svg");
+  position: absolute;
+  right: 0;
+}
+
+table thead th.action {
+  width: calc(var(--spacing) * 4.5);
+}
+
+table button {
+  word-break: break-all;
+}
+
+.grid-fluid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--spacing));
+}
+
+.grid-fluid button {
+  width: auto;
+  margin: 0;
+  padding: calc(var(--spacing) / 2);
+}
+
+.grid-fixed {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--spacing) * 2);
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.grid-fixed > * {
+  display: inline-block;
+  width: auto;
+  min-width: 200px;
+}
+
+dialog header {
+  white-space: nowrap;
+}
+
+dialog header .close {
+  height: 2.5rem;
+}
+
+dialog header > * {
+  display: inline-block;
+}
+
+dialog header h3 {
+  margin: 0;
+}
+
+dialog article {
+  max-width: 80vw;
+}
+
+dialog article p:last-of-type {
+  margin-bottom: var(--spacing);
+}
+
+.table-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: calc(100vh - 31rem);
+}
+
+.table-scroll table {
+  border-collapse: separate;
+  margin: 0;
+}
+
+.table-scroll thead {
+  background-color: var(--background-color);
+  position: sticky;
+  top: 0;
+}
+
+dialog-outlet > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+pre {
+  padding: var(--spacing);
+}
+
+dialog-outlet pre {
+  max-height: 70vh;
+}
+
+dialog-outlet pre mark {
+  display: block;
+}
+
+dialog-outlet p mark {
+  display: block;
+  text-align: center;
+}
+
+data-table nav {
+  border-top: 3px solid var(--table-border-color);
+}
+
+data-table nav *:is([role="button"]).secondary {
+  --background-color: transparent;
+  --color: var(--secondary);
+}
+
+data-table nav *:is([role="button"]).secondary.selected {
+  --background-color: var(--secondary);
+  --color: white;
+}
+
+global-filter {
+  position: relative;
+  display: block;
+}
+
+global-filter a {
+  position: absolute;
+  margin: auto;
+  right: 1rem;
+  top: 0;
+  bottom: 0;
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  background-image: var(--icon-close);
+  background-position: center;
+  background-size: auto 1rem;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+  transition: opacity var(--transition);
+}
+
+json-tree pre {
+  min-height: 60vh;
+  min-width: 70vh;
+}
+
+json-tree ins.bool {
+  color: red;
+}
+
+json-tree ins.number {
+  color: blue;
+}
+
+.center-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
